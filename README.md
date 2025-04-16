@@ -1,15 +1,15 @@
 # 🔁 Bidirectional ClickHouse & Flat File Data Ingestion Tool
 
+A full-stack web application that enables seamless data transfer between ClickHouse databases and CSV files in both directions.
+
 ## 📌 Project Overview
 
-This is a full-stack web application that enables **bidirectional data transfer** between:
-
-- **ClickHouse Database** (as source or target)
-- **Flat File (CSV)** (as source or target)
-
-It allows users to select data columns, handle JWT authentication for ClickHouse, and view ingestion status and record counts through a simple web interface.
-
----
+This tool provides a user-friendly interface for:
+- Exporting data from ClickHouse databases to CSV files
+- Importing data from CSV files into ClickHouse tables
+- Previewing and selecting columns
+- Handling JWT authentication for secure ClickHouse connections
+- Monitoring ingestion progress and record counts
 
 ## 🚀 Features
 
@@ -17,47 +17,34 @@ It allows users to select data columns, handle JWT authentication for ClickHouse
   - Export data from **ClickHouse → CSV**
   - Import data from **CSV → ClickHouse**
 - ✅ **JWT Authentication** for ClickHouse connections
-
 - 📂 **CSV File Upload & Download** support
-
 - 📋 **Schema Discovery & Column Selection**:
-
   - View tables and columns from ClickHouse
   - Preview column headers from uploaded CSV
-
 - 🔍 **Data Preview** before ingestion
-
 - 📊 **Progress Indicator** and **record count display**
-
-- 🔁 **(Bonus)** Support for **JOIN queries** between multiple ClickHouse tables
-
-- 🚫 **Error Handling** with user-friendly messages (e.g., invalid credentials, connection failures, malformed CSV)
-
----
+- 🔁 Support for **JOIN queries** between multiple ClickHouse tables
+- 🚫 **Error Handling** with user-friendly messages
 
 ## 🧑‍💻 Technologies Used
 
-### ⚙️ Backend (Node.js + Express)
+### ⚙️ Backend
+- **Node.js & Express**: Web server framework
+- **@apla/clickhouse**: ClickHouse client for Node.js
+- **jsonwebtoken**: For handling JWT tokens
+- **csv-parser & fast-csv**: For reading/writing CSV files
+- **multer**: For handling file uploads
+- **cors & dotenv**: Utility libraries
 
-- `express`: Web server
-- `@apla/clickhouse`: ClickHouse client for Node.js
-- `jsonwebtoken`: For handling JWT tokens
-- `csv-parser`, `fast-csv`: For reading/writing CSV files
-- `multer`: For handling file uploads
-- `fs`: Native file handling
-- `cors`, `dotenv`: Utility libraries
+### 💻 Frontend
+- **React**: UI framework
+- **axios**: For API calls
+- **react-dropzone**: For file uploads
+- **react-toastify**: For status messages
 
-### 💻 Frontend (React)
+## 📂 Project Structure
 
-- `React`: UI framework
-- `axios`: For API calls
-- `react-dropzone` or basic file input (for file uploads)
-- `react-toastify` or alert system for status messages
-
----
-
-### 📂 Project Structure
-
+```
 clickhouse-flatfile-ingestion-tool/
 ├── backend/
 │   ├── server.js                # Main server entry point
@@ -101,7 +88,7 @@ clickhouse-flatfile-ingestion-tool/
 │   │   └── styles/
 │   │       ├── main.css
 │   │       └── components/
-│   │
+│
 ├── testdata/                    # Sample data for testing
 │   ├── uk_price_paid.csv
 │   └── sample_output.csv
@@ -109,8 +96,8 @@ clickhouse-flatfile-ingestion-tool/
 ├── package.json
 ├── .env.example
 ├── .gitignore
-├── README.md
 └── docker-compose.yml          # For local ClickHouse setup
+```
 
 ## 🖼️ User Interface (UI) Flow
 
@@ -122,43 +109,109 @@ clickhouse-flatfile-ingestion-tool/
 6. **Start Ingestion**
 7. **View Results**: Ingestion complete message + record count
 
----
-
 ## 🔧 Setup Instructions
 
 ### 🖥️ Prerequisites
 
-- Node.js and npm
-- Docker (for running ClickHouse locally)
+- Node.js (v14+) and npm
+- Docker (for running ClickHouse locally if needed)
 - Git
 
-# 🛠️ Setup, Configuration & Run Instructions
+### 📁 Installation
 
-### 📁 Clone the Repository
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/yourusername/clickhouse-flatfile-ingestion-tool.git
+   cd clickhouse-flatfile-ingestion-tool
+   ```
 
-- git clone https://github.com/v-a-dinesh/Bidirectional-ClickHouse-Flat-File-Data-Ingestion-Tool.git
-- cd Bidirectional ClickHouse & Flat File Data Ingestion Tool
+2. **Backend Setup**
+   ```bash
+   cd backend
+   npm install
+   ```
 
-### 🔙 Backend Setup
+3. **Create a .env file in the backend directory**
+   ```
+   PORT=5000
+   CLICKHOUSE_DEFAULT_HOST=localhost
+   CLICKHOUSE_DEFAULT_PORT=8123
+   UPLOAD_DIR=./data/uploads
+   ```
 
-- cd .\Data-Ingestion-Tool-Server\
-- npm install
+4. **Start the Backend Server**
+   ```bash
+   npm start
+   # or for development with auto-restart:
+   npm run dev
+   ```
+   Backend will run on: http://localhost:5000
 
-### 📄 Create a .env file in the backend directory:
+5. **Frontend Setup**
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-- PORT=5000
+6. **Start the Frontend App**
+   ```bash
+   npm start
+   ```
+   Frontend will be accessible at: http://localhost:3000
 
-### ▶️ Start the Backend Server:
+### 🐳 Running ClickHouse Locally with Docker
 
-- nodemon server.js
-- The backend server will run on: http://localhost:5000
+```bash
+# Start ClickHouse server
+docker-compose up -d
+```
 
-### 🌐 Frontend Setup
+The ClickHouse server will be available at:
+- HTTP interface: http://localhost:8123
+- Native interface: localhost:9000
 
-- cd .\Data-Ingestion-Tool-Client\
-- npm install
+Default credentials:
+- Username: default
+- Password: (empty)
 
-### ▶️ Start the Frontend App:
+## 🧪 Testing with Sample Data
 
-- npm run dev
-- The frontend will be accessible at: http://localhost:port
+The `testdata` directory contains sample CSV files for testing the application:
+- `uk_price_paid.csv`: Sample dataset for importing into ClickHouse
+- `sample_output.csv`: Example of exported data format
+
+## 📝 Usage Examples
+
+### Example 1: CSV to ClickHouse
+1. Select "Flat File" as source
+2. Upload CSV file
+3. Preview columns and select columns to import
+4. Enter ClickHouse connection details
+5. Select target table or create new one
+6. Start ingestion
+
+### Example 2: ClickHouse to CSV
+1. Select "ClickHouse" as source
+2. Enter connection details and authenticate
+3. Select table and columns to export
+4. Choose CSV export options (delimiter, header, etc.)
+5. Start export
+6. Download the generated CSV file
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📧 Contact
+
+For questions or support, please open an issue in the GitHub repository.
