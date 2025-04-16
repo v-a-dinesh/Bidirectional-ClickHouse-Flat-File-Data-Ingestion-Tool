@@ -1,7 +1,3 @@
-# BIFLUX
-
----
-
 # 🔁 Bidirectional ClickHouse & Flat File Data Ingestion Tool
 
 ## 📌 Project Overview
