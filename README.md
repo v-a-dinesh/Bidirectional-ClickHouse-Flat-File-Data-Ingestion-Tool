@@ -60,22 +60,57 @@ It allows users to select data columns, handle JWT authentication for ClickHouse
 
 clickhouse-flatfile-ingestion-tool/
 ├── backend/
-│ ├── server.js
-│ ├── config.js
-│ ├── routes/
-│ ├── controllers/
-│ ├── utils/
-│ └── data/
-│ └── uploads/
+│   ├── server.js                # Main server entry point
+│   ├── config.js                # Configuration settings
+│   ├── routes/                  # API routes
+│   │   ├── clickhouse.routes.js # ClickHouse connections and queries
+│   │   ├── csv.routes.js        # CSV upload and download
+│   │   └── index.js             # Route aggregator
+│   ├── controllers/             # Business logic
+│   │   ├── clickhouse.controller.js
+│   │   ├── csv.controller.js
+│   │   └── ingestion.controller.js
+│   ├── utils/                   # Utility functions
+│   │   ├── csv-parser.js
+│   │   ├── clickhouse-client.js
+│   │   └── auth-helper.js
+│   └── data/
+│       └── uploads/             # Temporary storage for uploaded files
+│
 ├── frontend/
-│ ├── index.html
-│ ├── style.css
-│ └── script.js
-├── testdata/
-│ ├── uk_price_paid.csv
-│ └── sample_output.csv
-├── prompts.txt
-└── README.md
+│   ├── public/
+│   │   ├── index.html
+│   │   └── favicon.ico
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   ├── components/
+│   │   │   ├── ConnectionForm.jsx
+│   │   │   ├── ColumnSelector.jsx
+│   │   │   ├── FileUploader.jsx
+│   │   │   ├── ProgressIndicator.jsx
+│   │   │   └── TableViewer.jsx
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── ClickHouseToCSV.jsx
+│   │   │   └── CSVToClickHouse.jsx
+│   │   ├── services/
+│   │   │   ├── api.js
+│   │   │   ├── clickhouse.service.js
+│   │   │   └── csv.service.js
+│   │   └── styles/
+│   │       ├── main.css
+│   │       └── components/
+│   │
+├── testdata/                    # Sample data for testing
+│   ├── uk_price_paid.csv
+│   └── sample_output.csv
+│
+├── package.json
+├── .env.example
+├── .gitignore
+├── README.md
+└── docker-compose.yml          # For local ClickHouse setup
 
 ## 🖼️ User Interface (UI) Flow
 
@@ -101,12 +136,12 @@ clickhouse-flatfile-ingestion-tool/
 
 ### 📁 Clone the Repository
 
-- git clone https://github.com/sourav8927/BiFlux-Zeotap-assignment2.git
-- cd BiFlux-Zeotap-assignment2
+- git clone https://github.com/v-a-dinesh/Bidirectional-ClickHouse-Flat-File-Data-Ingestion-Tool.git
+- cd Bidirectional ClickHouse & Flat File Data Ingestion Tool
 
 ### 🔙 Backend Setup
 
-- cd .\BIFLUX-server\
+- cd .\Data-Ingestion-Tool-Server\
 - npm install
 
 ### 📄 Create a .env file in the backend directory:
@@ -120,7 +155,7 @@ clickhouse-flatfile-ingestion-tool/
 
 ### 🌐 Frontend Setup
 
-- cd .\BIFLUX-client\
+- cd .\Data-Ingestion-Tool-Client\
 - npm install
 
 ### ▶️ Start the Frontend App:
