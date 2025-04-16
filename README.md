@@ -1,5 +1,7 @@
 # BIFLUX
---------
+
+---
+
 # 🔁 Bidirectional ClickHouse & Flat File Data Ingestion Tool
 
 ## 📌 Project Overview
@@ -18,16 +20,16 @@ It allows users to select data columns, handle JWT authentication for ClickHouse
 - 🔄 **Bidirectional Data Flow**:
   - Export data from **ClickHouse → CSV**
   - Import data from **CSV → ClickHouse**
-  
 - ✅ **JWT Authentication** for ClickHouse connections
 
 - 📂 **CSV File Upload & Download** support
 
 - 📋 **Schema Discovery & Column Selection**:
+
   - View tables and columns from ClickHouse
   - Preview column headers from uploaded CSV
 
-- 🔍 **Data Preview** before ingestion 
+- 🔍 **Data Preview** before ingestion
 
 - 📊 **Progress Indicator** and **record count display**
 
@@ -58,6 +60,27 @@ It allows users to select data columns, handle JWT authentication for ClickHouse
 
 ---
 
+### 📂 Project Structure
+
+clickhouse-flatfile-ingestion-tool/
+├── backend/
+│ ├── server.js
+│ ├── config.js
+│ ├── routes/
+│ ├── controllers/
+│ ├── utils/
+│ └── data/
+│ └── uploads/
+├── frontend/
+│ ├── index.html
+│ ├── style.css
+│ └── script.js
+├── testdata/
+│ ├── uk_price_paid.csv
+│ └── sample_output.csv
+├── prompts.txt
+└── README.md
+
 ## 🖼️ User Interface (UI) Flow
 
 1. **Select Source**: Choose "ClickHouse" or "Flat File"
@@ -78,26 +101,33 @@ It allows users to select data columns, handle JWT authentication for ClickHouse
 - Docker (for running ClickHouse locally)
 - Git
 
-
 # 🛠️ Setup, Configuration & Run Instructions
+
 ### 📁 Clone the Repository
+
 - git clone https://github.com/sourav8927/BiFlux-Zeotap-assignment2.git
 - cd BiFlux-Zeotap-assignment2
 
 ### 🔙 Backend Setup
+
 - cd .\BIFLUX-server\
 - npm install
 
 ### 📄 Create a .env file in the backend directory:
+
 - PORT=5000
 
 ### ▶️ Start the Backend Server:
+
 - nodemon server.js
 - The backend server will run on: http://localhost:5000
 
 ### 🌐 Frontend Setup
+
 - cd .\BIFLUX-client\
 - npm install
+
 ### ▶️ Start the Frontend App:
+
 - npm run dev
 - The frontend will be accessible at: http://localhost:port
