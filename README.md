@@ -121,13 +121,13 @@ clickhouse-flatfile-ingestion-tool/
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/clickhouse-flatfile-ingestion-tool.git
-   cd clickhouse-flatfile-ingestion-tool
+   git clone https://github.com/v-a-dinesh/Bidirectional-ClickHouse-Flat-File-Data-Ingestion-Tool.git
+   cd Bidirectional-ClickHouse-Flat-File-Data-Ingestion-Tool
    ```
 
 2. **Backend Setup**
    ```bash
-   cd backend
+   cd .\Data-Ingestion-Tool-Server\
    npm install
    ```
 
@@ -149,7 +149,7 @@ clickhouse-flatfile-ingestion-tool/
 
 5. **Frontend Setup**
    ```bash
-   cd ../frontend
+   cd .\Data-Ingestion-Tool-Client\
    npm install
    ```
 
